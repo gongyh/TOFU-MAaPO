@@ -14,8 +14,9 @@ process METABAT {
 
 	script:
 		sampleID = meta.id
+                contigsminlength = max(1500, params.contigsminlength)
 		"""
-		metabat2 -i $fcontigs -a ${sampleID}_depth.txt -o ${sampleID}_bin -t ${task.cpus} -m ${params.contigsminlength}
+		metabat2 -i $fcontigs -a ${sampleID}_depth.txt -o ${sampleID}_bin -t ${task.cpus} -m ${contigsminlength}
 
 		touch ${sampleID}_bin.emptydummy.fa
 
